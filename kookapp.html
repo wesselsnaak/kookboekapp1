@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+    <title>KookApp</title>
+<style>
+    body {
+  text-align: center;
+    background: url("http://i65.tinypic.com/2pq4co5.png");
+    background-size:100%;
+  font-family: helvetica;
+}
+</style>
+
+<body>
+
+<h1>KookApp</h1>
+
+<h2>Welkom! Leuk dat je iets wilt gaan bereiden vandaag. Om te beginnen, vertel ons welke ingredi&#235nten je nodig hebt voor jouw recept.</h2>
+
+<p> Eerste ingredi&#235nt </p> <input type="text" id="ingredient1" size="20"> <button id="randbutton1" onclick="randomingr1()">Willekeurig ingredi&#235nt</button>
+
+<p> Tweede ingredi&#235nt </p> <input type="text" id="ingredient2" size="20"> <button id="randbutton2" onclick="randomingr2()">Willekeurig ingredi&#235nt</button>
+
+<p> Wat wil je gaan doen met je ingredi&#235nten? </p>
+
+<form name="keuze">
+    <input type="radio" id="koken" name="manier" value="koken" />
+    <label for="koken">Koken</label>
+    <input type="radio" id="bakken" name="manier" value="bakken" />
+    <label for="bakken">Bakken</label>
+    <input type="radio" id="braden" name="manier" value="braden"/>
+    <label for="braden">Braden</label>
+    <input type="radio" id="kneden" name="manier" value="kneden"/>
+    <label for="kneden">Kneden</label>
+    <input type="radio" id="stoven" name="manier" value="stoven"/>
+    <label for="stoven">Stoven</label>
+</form>
+<br>
+
+Tijd van de handeling in minuten: <input type="number" id="tijd" size="3" min="1" max="280">
+<p></p>
+<button id="printbutton" onclick="getprint()">Printen</button>
+<button id="instrbutton" onclick="getsubmit()">Klaar</button>
+<button id="resetbutton" onclick="getreset()">Opnieuw</button>
+
+<h2 id=instructions></h2>
+<h2 id=eetsmakelijk></2>
+<script  type="text/javascript">
+  
+var ingr1 = document.getElementById("ingredient1");
+var ingr2 = document.getElementById("ingredient2");
+var time = document.getElementById("tijd");
+var opties = document.getElementsByName("manier");
+var uitkomst = document.getElementById("uitkomst");
+var ikvormingredient = "ERROR";
+
+window.onload=function(){
+document.getElementById('printbutton').style.visibility='hidden';
+document.getElementById('resetbutton').style.visibility='hidden';
+}
+
+function getsubmit() {
+	
+	for (var i = 0, length = opties.length; i < length; i++) {
+    if (opties[i].checked && ingr1.value != "" && ingr2.value != "" && time.value != "") {
+        // laat de gebruiker de gegevens controlleren
+        var yes = confirm("Controleer of de gegevens juist ingevoerd zijn. Als eerste ingredient is gekozen voor: " + ingr1.value + ". Als tweede ingredient is gekozen voor: " + ingr2.value + ". Met deze ingredienten wil je " + time.value + " minuten gaan " + opties[i].value + ". \n \n Klopt deze informatie?");
+        if (yes == true) {
+            
+            if (opties[i].value == "koken") {
+                ikvormingredient = "Kook";
+            } 
+            if (opties[i].value == "bakken") {
+                ikvormingredient = "Bak";
+            } 
+            if (opties[i].value == "braden") {
+                ikvormingredient = "Braad";
+            } 
+            if (opties[i].value == "kneden") {
+                ikvormingredient = "Kneed";
+            } 
+            if (opties[i].value == "stoven") {
+                ikvormingredient = "Stoof";
+            }
+            
+            showinstructions();
+        } 
+        else {
+        
+        }
+    }
+	}
+}
+
+function getprint() {
+    window.print()
+}
+
+function randomingr1() {
+    // getal kiezen tussen de 1 en 17
+    var randominteger = Math.floor(Math.random() * 17) + 1;
+if (randominteger == 1) {
+    ingr1.value = "ei";
+}
+if (randominteger == 2) {
+    ingr1.value = "appel";
+}
+if (randominteger == 3) {
+    ingr1.value = "meel";
+}
+if (randominteger == 4) {
+    ingr1.value = "brood";
+}
+if (randominteger == 5) {
+    ingr1.value = "chocolade";
+}
+if (randominteger == 6) {
+    ingr1.value = "suiker";
+}
+if (randominteger == 7) {
+    ingr1.value = "knoflook";
+}
+if (randominteger == 8) {
+    ingr1.value = "rundergehakt";
+}
+if (randominteger == 9) {
+    ingr1.value = "tomatenblokjes";
+}
+if (randominteger == 10) {
+    ingr1.value = "kipfilet";
+}
+if (randominteger == 11) {
+    ingr1.value = "peper";
+}
+if (randominteger == 12) {
+    ingr1.value = "ui";
+}
+if (randominteger == 13) {
+    ingr1.value = "paprika";
+}
+if (randominteger == 14) {
+    ingr1.value = "bloem";
+}
+if (randominteger == 15) {
+    ingr1.value = "zilvervliesrijst";
+}
+if (randominteger == 16) {
+    ingr1.value = "mais";
+}
+if (randominteger == 17) {
+    ingr1.value = "spekblokjes";
+}
+document.getElementById("randbutton1").innerHTML = "Ander ingredi&#235nt";
+}
+
+function randomingr2() {
+        // getal kiezen tussen de 1 en 17
+    var randominteger = Math.floor(Math.random() * 10) + 1;
+if (randominteger == 1) {
+    ingr2.value = "ei";
+}
+if (randominteger == 2) {
+    ingr2.value = "appel";
+}
+if (randominteger == 3) {
+    ingr2.value = "meel";
+}
+if (randominteger == 4) {
+    ingr2.value = "brood";
+}
+if (randominteger == 5) {
+    ingr2.value = "chocolade";
+}
+if (randominteger == 6) {
+    ingr2.value = "suiker";
+}
+if (randominteger == 7) {
+    ingr2.value = "knoflook";
+}
+if (randominteger == 8) {
+    ingr2.value = "rundergehakt";
+}
+if (randominteger == 9) {
+    ingr2.value = "tomatenblokjes";
+}
+if (randominteger == 10) {
+    ingr2.value = "kipfilet";
+}
+if (randominteger == 11) {
+    ingr2.value = "peper";
+}
+if (randominteger == 12) {
+    ingr2.value = "ui";
+}
+if (randominteger == 13) {
+    ingr2.value = "paprika";
+}
+if (randominteger == 14) {
+    ingr2.value = "bloem";
+}
+if (randominteger == 15) {
+    ingr2.value = "zilvervliesrijst";
+}
+if (randominteger == 16) {
+    ingr2.value = "mais";
+}
+if (randominteger == 17) {
+    ingr2.value = "spekblokjes";
+}
+document.getElementById("randbutton2").innerHTML = "Ander ingredi&#235nt";
+
+}
+
+function getreset() {
+    
+    ingr1.value = "";
+    ingr2.value = "";
+    var opties = document.getElementsByName("manier");
+    for(var i=0;i<opties.length;i++) {
+      opties[i].checked = false;
+    }
+    document.getElementById("tijd").value = "";
+    document.getElementById('printbutton').style.visibility='hidden';
+    document.getElementById('resetbutton').style.visibility='hidden';
+    document.getElementById('instrbutton').style.visibility='visible';
+    document.getElementById("instructions").innerHTML = "";
+    document.getElementById("randbutton1").innerHTML = "Willekeurig ingredi&#235nt";
+document.getElementById("randbutton2").innerHTML = "Willekeurig ingredi&#235nt";
+
+document.getElementById("eetsmakelijk").innerHTML = ""
+
+}
+
+function showinstructions(){
+    
+    document.getElementById("instructions").innerHTML = ikvormingredient + " de ingredienten " + ingr1.value + " en " + ingr2.value + " gedurende " + time.value + " minuten.";
+document.getElementById("eetsmakelijk").innerHTML = "Eet smakelijk!"
+document.getElementById('printbutton').style.visibility='visible';
+document.getElementById('resetbutton').style.visibility='visible';
+document.getElementById('instrbutton').style.visibility='hidden';
+
+
+}
+</script>
+
+<h3 id=uitkomst></h3>
+</body>
